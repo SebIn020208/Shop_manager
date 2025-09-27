@@ -17,7 +17,7 @@ import com.shop_manager.R;
 
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
-    private static final String CHANNEL_ID = "gagemanager_notifications";
+    private static final String CHANNEL_ID = "shop_manager_notifications";
 
 
     @Override
@@ -25,7 +25,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         super.onNewToken(token);
 // 서버로 토큰 전송 필요(관리 콘솔이나 Cloud Function 사용)
     }
-
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {

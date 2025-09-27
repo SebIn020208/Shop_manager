@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +15,8 @@ import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.BarEntry;
 import com.shop_manager.R;
 import com.shop_manager.data.model.Sales;
 
@@ -29,7 +29,9 @@ public class AddSaleDialogFragment extends DialogFragment {
     private SalesViewModel viewModel;
 
 
-    public AddSaleDialogFragment(SalesViewModel vm) { this.viewModel = vm; }
+    public AddSaleDialogFragment(SalesViewModel vm) {
+        this.viewModel = vm;
+    }
 
 
     @NonNull
@@ -80,7 +82,7 @@ public class AddSaleDialogFragment extends DialogFragment {
 
 
         private void showWeeklyChart(List<Sales> sales) {
-    // 예시: 최근 7일 합계(간단 구현)
+            // 예시: 최근 7일 합계(간단 구현)
             long now = System.currentTimeMillis();
             Calendar cal = Calendar.getInstance();
             cal.setTimeInMillis(now);
@@ -88,14 +90,14 @@ public class AddSaleDialogFragment extends DialogFragment {
             cal.set(Calendar.MINUTE, 0);
             cal.set(Calendar.SECOND, 0);
             cal.set(Calendar.MILLISECOND, 0);
-            long end = cal.getTimeInMillis() + 24L*60*60*1000; // 내일 0시
+            long end = cal.getTimeInMillis() + 24L * 60 * 60 * 1000; // 내일 0시
 
 
-            final long DAY = 24L*60*60*1000;
+            final long DAY = 24L * 60 * 60 * 1000;
             float[] sums = new float[7];
             for (Sales s : sales) {
                 long diff = end - s.dateMillis;
-                int dayIndex = (int)(diff / DAY);
+                int dayIndex = (int) (diff / DAY);
                 if (dayIndex >= 0 && dayIndex < 7) {
                     sums[6 - dayIndex] += s.amount; // reverse order
                 }
@@ -105,4 +107,5 @@ public class AddSaleDialogFragment extends DialogFragment {
             ArrayList<BarEntry> entries = new ArrayList<>();
             for (int i = 0; i < 7; i++) entries.add(new BarEntry(i, sums[i]));
         }
+    }
 }

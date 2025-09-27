@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "374546971621",
+    "project_id": "shopmanger-d5680",
+    "storage_bucket": "shopmanger-d5680.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:374546971621:android:f65e199b6516e07f770d0c",
+        "android_client_info": {
+          "package_name": "com.shop_manager"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC73PbiXf8n3izxZMnxqnwN186vqlkcFbM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.shop_manager.ChartActivity;
+import com.shop_manager.ui.ChartActivity;
 import com.shop_manager.R;
 import com.shop_manager.data.model.Sales;
 
@@ -45,8 +45,8 @@ public class SalesActivity extends AppCompatActivity {
             public void onChanged(List<Sales> sales) {
                 adapter.setItems(sales);
 // 합계(오늘) 계산은 간단히 client-side로 처리 가능
-                long todayStart = com.gagemanager.util.DateUtils.startOfDayMillis(System.currentTimeMillis());
-                long todayEnd = com.gagemanager.util.DateUtils.endOfDayMillis(System.currentTimeMillis());
+                long todayStart = com.shop_manager.util.DateUtils.startOfDayMillis(System.currentTimeMillis());
+                long todayEnd = com.shop_manager.util.DateUtils.endOfDayMillis(System.currentTimeMillis());
                 vm.getSumBetween(todayStart, todayEnd).observe(SalesActivity.this, sum -> {
                     long total = sum == null ? 0 : sum;
                     tvTotal.setText("오늘 매출: ₩" + total);

@@ -1,6 +1,6 @@
 plugins {
     id 'com.android.application'
-    id 'com.google.gms.google-services' version '4.3.15' apply false
+    id 'com.google.gms.google-services' version '4.4.3' apply false
 }
 
 
@@ -48,9 +48,10 @@ dependencies {
 
 
 // Firebase Cloud Messaging
-    implementation platform('com.google.firebase:firebase-bom:33.4.0')
+    implementation platform('com.google.firebase:firebase-bom:34.3.0')
     implementation 'com.google.firebase:firebase-firestore'
     implementation 'com.google.firebase:firebase-messaging:23.1.2'
+    implementation 'com.google.firebase:firebase-analytics'
 
 
 // Retrofit (리뷰 API 등 외부 통신용; MVP 단계에서는 나중에 연결)
