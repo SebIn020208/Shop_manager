@@ -1,5 +1,6 @@
 package com.shop_manager.ui;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,6 +27,7 @@ public class SalesActivity extends AppCompatActivity {
     private TextView tvTotal;
 
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
