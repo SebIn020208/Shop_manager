@@ -1,61 +1,66 @@
 package com.shop_manager.ui;
 
-
+import android.Manifest;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.content.Context;
-import android.media.RingtoneManager;
-import android.net.Uri;
+import android.content.pm.PackageManager;
+import android.os.Build;
 
-
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
-
+import androidx.core.app.NotificationManagerCompat;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.shop_manager.R;
 
-
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
-    private static final String CHANNEL_ID = "shop_manager_notifications";
-
-
-    @Override
-    public void onNewToken(String token) {
-        super.onNewToken(token);
-// 서버로 토큰 전송 필요(관리 콘솔이나 Cloud Function 사용)
-    }
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
-        String title = "가게매니저";
-        String body = "새 알림";
-        if (remoteMessage.getNotification() != null) {
-            title = remoteMessage.getNotification().getTitle();
-            body = remoteMessage.getNotification().getBody();
-        } else if (!remoteMessage.getData().isEmpty()) {
-            body = remoteMessage.getData().toString();
-        }
-        sendNotification(title, body);
+
+        String title = remoteMessage.getNotification() != null ?
+                remoteMessage.getNotification().getTitle() : "알림";
+        String body = remoteMessage.getNotification() != null ?
+                remoteMessage.getNotification().getBody() : "메시지 내용 없음";
+
+        showNotification(title, body);
     }
 
+    private void showNotification(String title, String body) {
+        String channelId = "fcm_default_channel";
 
-    private void sendNotification(String title, String messageBody) {
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, "알림", NotificationManager.IMPORTANCE_DEFAULT);
-            notificationManager.createNotificationChannel(channel);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(
+                    channelId, "FCM Channel", NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationManager manager = getSystemService(NotificationManager.class);
+            manager.createNotificationChannel(channel);
         }
-        Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelId)
+                .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(title)
-                .setContentText(messageBody)
-                .setAutoCancel(true)
-                .setSound(defaultSoundUri);
+                .setContentText(body)
+                .setAutoCancel(true);
 
+        NotificationManagerCompat manager = NotificationManagerCompat.from(this);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        manager.notify(1, builder.build());
+    }
 
-        notificationManager.notify((int)System.currentTimeMillis(), notificationBuilder.build());
+    @Override
+    public void onNewToken(String token) {
+        super.onNewToken(token);
+        System.out.println("🔄 새 토큰: " + token);
     }
 }
