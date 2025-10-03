@@ -1,9 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:padding="16dp"
-    android:layout_width="match_parent" android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-    <EditText android:id="@+id/et_title" android:hint="제목" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-    <EditText android:id="@+id/et_message" android:hint="메시지" android:layout_width="match_parent" android:layout_height="wrap_content"/>
-    <Button android:id="@+id/btn_send" android:text="이벤트 등록, 발송" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+    <EditText
+        android:id="@+id/et_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="제목"
+        android:minHeight="48dp"
+        tools:ignore="TextSizeCheck" />
+
+    <EditText
+        android:id="@+id/et_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:hint="메시지"
+        android:minHeight="48dp"
+        tools:ignore="TextSizeCheck" />
+
+    <Button
+        android:id="@+id/btn_send"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:minHeight="48dp"
+        android:text="이벤트 등록, 발송"
+        tools:ignore="TextSizeCheck" />
+
 </LinearLayout>
