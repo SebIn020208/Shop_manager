@@ -1,11 +1,10 @@
 package com.shop_manager.data.model;
 
-
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 
-@Entity(tableName = "sales")
+@Entity
 public class Sales {
     @PrimaryKey(autoGenerate = true)
     public long id;
