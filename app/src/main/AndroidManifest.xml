@@ -10,7 +10,7 @@
         android:name="androidx.multidex.MultiDexApplication"
         android:allowBackup="true"
         android:label="가게매니저"
-        android:theme="@style/Theme.Material3.DayNight.NoActionBar">
+        android:theme="@style/Theme.Shop_manager">
 
     <service
             android:name="com.shop_manager.ui.MyFirebaseMessagingService"
