@@ -21,13 +21,15 @@ android {
 
 
 dependencies {
-    def roomVersion = "2.8.2"
+    def roomVersion = "2.8.6"
 
     // AndroidX
-    implementation 'androidx.appcompat:appcompat:1.7.1'
-    implementation 'com.google.android.material:material:1.14.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
-    implementation 'androidx.recyclerview:recyclerview:1.4.0'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.2.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.0'
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'
+
 
     // Lifecycle
     implementation 'androidx.lifecycle:lifecycle-viewmodel-android:2.8.6'
@@ -38,11 +40,11 @@ dependencies {
 
 
     // Room
-    implementation 'androidx.room:room-common-jvm:&roomVersion'
-    implementation 'androidx.room:room-runtime:&roomVersion'
-    implementation 'androidx.coordinatorlayout:coordinatorlayout:&roomVersion'
-    annotationProcessor 'androidx.room:room-compiler:&roomVersion'
-    implementation 'androidx.room:room-ktx:&roomVersion'
+    implementation "androidx.room:room-common-jvm:$roomVersion"
+    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation "androidx.coordinatorlayout:coordinatorlayout:$roomVersion"
+    annotationProcessor "androidx.room:room-compiler:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
 
     // 기타 라이브러리
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
