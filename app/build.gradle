@@ -3,7 +3,6 @@ plugins {
     id 'com.google.gms.google-services'
 }
 
-
 android {
     namespace "com.shop_manager"
     compileSdk 31
@@ -18,7 +17,6 @@ android {
         viewBinding true
     }
 }
-
 
 dependencies {
     def roomVersion = "2.8.6"
